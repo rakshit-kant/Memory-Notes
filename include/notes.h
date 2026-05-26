@@ -8,8 +8,8 @@ typedef struct {
 } Note;
 
 int menu();
-void add_note(Note *note);
-void view_note(const Note *note);
+void add_note(Note *current_note, int id);
+void view_note(const Note *current_note);
 void delete_note();
 void search_note();
 #endif

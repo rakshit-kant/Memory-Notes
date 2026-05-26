@@ -10,11 +10,12 @@ int main() {
         int choice = menu();
 
         switch (choice) {
-        case 1:
+        case 1: {
             add_note(&note_list[note_count], note_count + 1);
             note_count++;
             break;
-        case 2:
+        }
+        case 2: {
             int temp_id;
             printf("Enter the ID of the Note: ");
             scanf(" %d", &temp_id);
@@ -26,14 +27,18 @@ int main() {
                 view_note(&note_list[temp_id]);
             }
             break;
-        case 3:
+        }
+        case 3: {
             delete_note();
             break;
-        case 4:
+        }
+        case 4: {
             search_note();
             break;
-        case 5:
+        }
+        case 5: {
             return 0;
+        }
         }
     }
 }
