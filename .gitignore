@@ -1,0 +1,41 @@
+# Build output
+build/
+
+# Compiled binaries
+*.o
+*.out
+*.exe
+memory-notes-cli
+
+# Object files
+*.o
+*.obj
+
+# Static/Dynamic libraries
+*.a
+*.so
+*.dll
+*.dylib
+
+# Debugger files
+*.dSYM/
+*.pdb
+
+# Temporary/editor files
+*.swp
+*.swo
+*~
+
+# VS Code
+.vscode/
+.idea
+
+# Helix cache/session stuff
+.helix/
+
+# OS garbage
+.DS_Store
+Thumbs.db
+
+#Data stuff
+data/*.txt
