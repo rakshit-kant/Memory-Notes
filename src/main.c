@@ -1,7 +1,11 @@
+#include "file_io.h"
 #include "notes.h"
 #include <stdio.h>
 
-int main() {
+int main(void) {
+
+    reload_data(note_list[], int *note_count);
+
     Note note_list[100];
     int note_count = 0;
 
@@ -16,27 +20,18 @@ int main() {
             break;
         }
         case 2: {
-            int temp_id;
-            printf("Enter the ID of the Note: ");
-            scanf(" %d", &temp_id);
-
-            if (temp_id < 0 || temp_id >= note_count) {
-                while (getchar() != '\n')
-                    ;
-                printf("Invalid Input! Enter a Number");
-                view_note(&note_list[temp_id]);
-            }
+            search_note(note_list, note_count);
             break;
         }
         case 3: {
-            delete_note();
+            int idx = search_note(note_list, note_count);
+            if (idx != -1) {
+                delete_note(note_list, &note_count, idx);
+            }
             break;
-        }
+        } break;
         case 4: {
-            search_note();
-            break;
-        }
-        case 5: {
+            batch_save(note_list[], int note_count);
             return 0;
         }
         }

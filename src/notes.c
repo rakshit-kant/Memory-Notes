@@ -5,10 +5,9 @@ int menu() {
     int chosen_menu_number;
     printf("Welcome to Memory Notes CLI App!\n");
     printf("1. -> Adding a Note\n");
-    printf("2. -> Viewing a Note\n");
+    printf("2. -> Searching a Note\n");
     printf("3. -> Deleting a Note\n");
-    printf("4. -> Searching the program\n");
-    printf("5. -> Exiting the program\n");
+    printf("4. -> Exiting the program\n");
 
     printf("Enter a Number: ");
 
@@ -20,11 +19,10 @@ int menu() {
     }
     while (getchar() != '\n')
         ;
-
-    if (chosen_menu_number < 1 || chosen_menu_number > 5) {
-        (printf("Wrong Number! Enter a Correct Number!"));
+    while (chosen_menu_number < 1 || chosen_menu_number > 4) {
+        printf("Wrong Number! Enter again: ");
+        scanf("%d", &chosen_menu_number);
     }
-
     return chosen_menu_number;
 }
 
@@ -42,16 +40,30 @@ void add_note(Note *current_note, int id) {
     printf("Content: %s\n", current_note->content);
 }
 
-void view_note(const Note *current_note) {
-    printf("ID: %d\n", current_note->id);
-    printf("Title: %s\n", current_note->title);
-    printf("Content: %s\n", current_note->content);
+int search_note(Note note_list[], int note_count) {
+    int target;
+    printf("Enter ID: ");
+    scanf("%d", &target);
+    while (getchar() != '\n')
+        ;
+
+    for (int i = 0; i < note_count; i++) {
+        if (note_list[i].id == target) {
+            printf("Found!\n");
+            printf("ID: %d\nTitle: %s\nContent: %s\n", note_list[i].id, note_list[i].title,
+                   note_list[i].content);
+            return i;
+        }
+    }
+
+    printf("Not found\n");
+    return -1;
 }
 
-void search_note() {
-    // Placeholder
-}
+void delete_note(Note note_list[], int *note_count, int idx) {
+    for (int i = idx; i < *note_count - 1; i++) {
+        note_list[i] = note_list[i + 1];
+    }
 
-void delete_note() {
-    // Placeholder
+    (*note_count)--;
 }

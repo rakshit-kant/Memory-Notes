@@ -1,15 +1,16 @@
 #ifndef NOTES_H
 #define NOTES_H
 
+int menu();
+
 typedef struct {
     int id;
-    char title[100];
-    char content[500];
+    char title[64];
+    char content[256];
 } Note;
 
-int menu();
-void add_note(Note *current_note, int id);
-void view_note(const Note *current_note);
-void delete_note();
-void search_note();
+void add_note(Note *, int);
+int search_note(Note[], int);
+void delete_note(Note[], int *, int);
+
 #endif
