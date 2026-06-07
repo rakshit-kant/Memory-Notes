@@ -1,4 +1,5 @@
 #include "file_io.h"
+#include "notes.h"
 #include <stdio.h>
 
 int batch_save(Note note_list[], int note_count) {
@@ -12,6 +13,7 @@ int batch_save(Note note_list[], int note_count) {
     fwrite(note_list, sizeof(Note), note_count, fp);
 
     fclose(fp);
+    return 0;
 }
 
 int reload_data(Note note_list[], int *note_count) {
@@ -19,8 +21,9 @@ int reload_data(Note note_list[], int *note_count) {
 
     if (fp == NULL) {
         *note_count = 0;
-        return;
+        return 0;
     }
 
     *note_count = fread(note_list, sizeof(Note), 100, fp);
+    return 1;
 }

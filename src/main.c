@@ -4,10 +4,10 @@
 
 int main(void) {
 
-    reload_data(note_list[], int *note_count);
-
     Note note_list[100];
     int note_count = 0;
+
+    reload_data(note_list, &note_count);
 
     while (1) {
 
@@ -29,9 +29,9 @@ int main(void) {
                 delete_note(note_list, &note_count, idx);
             }
             break;
-        } break;
+        }
         case 4: {
-            batch_save(note_list[], int note_count);
+            batch_save(note_list, note_count);
             return 0;
         }
         }
