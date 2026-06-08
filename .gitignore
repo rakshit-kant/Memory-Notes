@@ -38,4 +38,4 @@ memory-notes-cli
 Thumbs.db
 
 #Data stuff
-data/*.txt
+notes.bin
