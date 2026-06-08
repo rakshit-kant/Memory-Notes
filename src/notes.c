@@ -3,31 +3,37 @@
 
 int menu() {
     int chosen_menu_number;
-    printf("Welcome to Memory Notes CLI App!\n");
-    printf("1. -> Adding a Note\n");
-    printf("2. -> Searching a Note\n");
-    printf("3. -> Deleting a Note\n");
-    printf("4. -> Exiting the program\n");
+    printf("\nWelcome to Memory Notes CLI App!\n");
+    printf("\n1. Adding a Note\n");
+    printf("2. Searching a Note\n");
+    printf("3. Deleting a Note\n");
+    printf("4. List All Notes\n");
+    printf("5. Exit the Program\n");
 
-    printf("Enter a Number: ");
+    printf("\nEnter a Number: ");
 
     while (scanf("%d", &chosen_menu_number) != 1) {
         while (getchar() != '\n')
             ;
 
-        printf("Invalid Input! Please Enter a Number: ");
+        printf("\nInvalid Input! Please Enter a Number: ");
     }
     while (getchar() != '\n')
         ;
-    while (chosen_menu_number < 1 || chosen_menu_number > 4) {
-        printf("Wrong Number! Enter again: ");
-        scanf("%d", &chosen_menu_number);
+    while (chosen_menu_number < 1 || chosen_menu_number > 5) {
+        printf("\nWrong Number! Enter again: ");
+        while (scanf("%d", &chosen_menu_number) != 1) {
+            while (getchar() != '\n')
+                ;
+
+            printf("\nInvalid Input! Please Enter a Number: ");
+        }
     }
     return chosen_menu_number;
 }
 
-void add_note(Note *current_note, int id) {
-    current_note->id = id;
+void add_note(Note *current_note, int *next_id) {
+    current_note->id = (*next_id)++;
     printf("Enter Title: ");
     fgets(current_note->title, sizeof(current_note->title), stdin);
 
@@ -66,5 +72,18 @@ void delete_note(Note note_list[], int *note_count, int idx) {
     }
 
     (*note_count)--;
-    printf("COUNT: %d\n", *note_count);
+    printf("Notes Left: %d\n", *note_count);
+}
+
+void list_notes(Note *note_list, int note_count) {
+    if (note_count == 0) {
+        printf("No Notes Available\n");
+        return;
+    }
+
+    printf("\n--- Notes ---\n");
+
+    for (int i = 0; i < note_count; i++) {
+        printf("ID: %d | Title: %s\n", note_list[i].id, note_list[i].title);
+    }
 }

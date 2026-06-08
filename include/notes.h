@@ -9,8 +9,9 @@ typedef struct {
     char content[256];
 } Note;
 
-void add_note(Note *, int);
-int search_note(Note[], int);
-void delete_note(Note[], int *, int);
+void add_note(Note *current_note, int *next_id);
+int search_note(Note note_list[], int note_count);
+void delete_note(Note note_list[], int *note_count, int idx);
+void list_notes(Note note_list[], int note_count);
 
 #endif
