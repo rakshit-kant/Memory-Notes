@@ -66,4 +66,5 @@ void delete_note(Note note_list[], int *note_count, int idx) {
     }
 
     (*note_count)--;
+    printf("COUNT: %d\n", *note_count);
 }

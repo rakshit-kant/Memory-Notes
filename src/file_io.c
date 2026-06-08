@@ -21,9 +21,11 @@ int reload_data(Note note_list[], int *note_count) {
 
     if (fp == NULL) {
         *note_count = 0;
-        return 0;
+        return 1;
     }
 
     *note_count = fread(note_list, sizeof(Note), 100, fp);
-    return 1;
+    fclose(fp);
+
+    return 0;
 }
