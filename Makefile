@@ -1,17 +1,13 @@
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -Iinclude
+CFLAGS = -Wall -Wextra -Werror -Iinclude -fPIC
 
-SRC = src/main.c src/notes.c src/file_io.c
+SRC = src/notes.c src/file_io.c
 
-OUT = build/memory-notes-cli
+LIB = libnotes.so
 
 all:
-	mkdir -p build
-	$(CC) $(CFLAGS) $(SRC) -o $(OUT)
-
-run: all
-	./$(OUT)
+	$(CC) $(CFLAGS) -shared $(SRC) -o $(LIB)
 
 clean:
-	rm -rf build
+	rm -f $(LIB)
