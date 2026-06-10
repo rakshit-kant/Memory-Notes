@@ -1,24 +1,49 @@
 #include "notes.h"
+#include "file_io.h"
 #include <stdio.h>
 #include <string.h>
 
-int add_note(Note note_list[], int *note_count, int *next_id, const char *title,
-             const char *content) {
-    Note *current_note = &note_list[*note_count];
+#define MAX_NOTES 100
 
-    current_note->id = (*next_id)++;
+static Note notes[MAX_NOTES];
+static int count = 0;
+static int next_id = 1;
+static int initialized = 0;
 
-    strncpy(current_note->title, title, sizeof(current_note->title) - 1);
+static void ensure_initialized() {
+    if (!initialized) {
+        reload_data(notes, &count);
 
-    current_note->title[sizeof(current_note->title) - 1] = '\0';
+        for (int i = 0; i < count; i++) {
+            if (notes[i].id >= next_id) {
+                next_id = notes[i].id + 1;
+            }
+        }
 
-    strncpy(current_note->content, content, sizeof(current_note->content) - 1);
+        initialized = 1;
+    }
+}
 
-    current_note->content[sizeof(current_note->content) - 1] = '\0';
+int add_note(const char *title, const char *content) {
+    ensure_initialized();
 
-    (*note_count)++;
+    if (count >= MAX_NOTES)
+        return -1;
 
-    return current_note->id;
+    Note *current = &notes[count];
+    current->id = (next_id)++;
+
+    strncpy(current->title, title, sizeof(current->title) - 1);
+    current->title[sizeof(current->title) - 1] = '\0';
+
+    strncpy(current->content, content, sizeof(current->content) - 1);
+    current->content[sizeof(current->content) - 1] = '\0';
+
+    count++;
+
+    batch_save(notes, count);
+
+    return current->id;
 }
 
 int search_note(Note note_list[], int note_count, int target_id) {
@@ -30,18 +55,45 @@ int search_note(Note note_list[], int note_count, int target_id) {
     return -1;
 }
 
-int delete_note(Note note_list[], int *note_count, int target_id) {
-    int idx = search_note(note_list, *note_count, target_id);
+int delete_note(int target_id) {
+    ensure_initialized();
+
+    int idx = search_note(notes, count, target_id);
 
     if (idx == -1) {
         return 0;
     }
 
-    for (int i = idx; i < *note_count - 1; i++) {
-        note_list[i] = note_list[i + 1];
+    for (int i = idx; i < count - 1; i++) {
+        notes[i] = notes[i + 1];
     }
 
-    (*note_count)--;
+    count--;
+
+    batch_save(notes, count);
 
     return 1;
+}
+
+// =======================
+// PUBLIC API (for Python)
+// =======================
+
+int api_add_note(const char *title, const char *content) {
+    return add_note(title, content);
+}
+
+int api_delete_note(int id) {
+    return delete_note(id);
+}
+
+int api_get_all_notes(Note *out, int max) {
+    ensure_initialized();
+    int n = (count < max) ? count : max;
+
+    for (int i = 0; i < n; i++) {
+        out[i] = notes[i];
+    }
+
+    return n;
 }

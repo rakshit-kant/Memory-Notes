@@ -30,12 +30,14 @@ memory-notes-cli
 .vscode/
 .idea
 
-# Helix cache/session stuff
-.helix/
-
 # OS garbage
 .DS_Store
 Thumbs.db
 
 #Data stuff
 notes.bin
+
+# Unused/Blank Frontend Stuff (Blank Right Now)
+index.html
+style.css
+script.js
