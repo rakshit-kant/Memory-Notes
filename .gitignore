@@ -36,8 +36,5 @@ Thumbs.db
 
 #Data stuff
 notes.bin
-
-# Unused/Blank Frontend Stuff (Blank Right Now)
-index.html
-style.css
-script.js
+*.so
+__pycache__/
