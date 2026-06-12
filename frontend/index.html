@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1>Memory Notes</h1>
+      <p>Fast note storage powered by C + FastAPI</p>
+    </div>
+
+
+    <div class="note-form">
+
+      <input type="text" id="title" placeholder="Note Title">
+
+      <textarea id="content" placeholder="Write Something..."></textarea>
+
+      <button class="add-btn" onclick="addNote()">
+        + Add Note
+      </button>
+
+    </div>
+
+    <div class="notes-header">
+      <h2>Your Notes</h2>
+    </div>
+
+    <div id="notes" class="notes-grid"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

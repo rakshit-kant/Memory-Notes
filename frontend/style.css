@@ -1,0 +1,366 @@
+/*Global*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f4f3f0;
+  --card: #ffffff;
+  --border: #e2e0dc;
+  --text: #1c1917;
+  --muted: #78716c;
+  --orange: #f97316;
+  --orange-hover: #ea580c;
+  --red: #dc2626;
+  --red-hover: #b91c1c;
+}
+
+body {
+
+  background: var(--bg);
+
+  color: var(--text);
+
+  font-family:
+    Inter,
+    system-ui,
+    sans-serif;
+
+  line-height: 1.6;
+
+  min-height: 100vh;
+}
+
+/*Layout*/
+
+.container {
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  padding: 64px 20px;
+}
+
+/*Header*/
+
+.hero {
+
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+
+  font-size: 2.8rem;
+
+  font-weight: 800;
+
+  letter-spacing: -1.5px;
+
+  margin-bottom: 6px;
+
+  color: var(--text);
+}
+
+.hero p {
+
+  color: var(--muted);
+
+  font-size: 1rem;
+
+  font-weight: 400;
+}
+
+/*Form*/
+
+.note-form {
+
+  background: #ffffff;
+
+  border: 1px solid var(--border);
+
+  border-radius: 20px;
+
+  padding: 24px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(0, 0, 0, 0.08);
+
+  margin-bottom: 48px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+input,
+textarea {
+
+  width: 100%;
+
+  border: 1.5px solid var(--border);
+
+  border-radius: 12px;
+
+  padding: 14px 16px;
+
+  font-size: 0.95rem;
+
+  font-family: inherit;
+
+  background: #fafaf9;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+
+  outline: none;
+
+  border-color: var(--orange);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(249, 115, 22, 0.1);
+}
+
+textarea {
+
+  min-height: 160px;
+
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+
+  color: #b5b0aa;
+}
+
+/*Add Button*/
+
+.add-btn {
+
+  width: 100%;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #f97316, #ea580c);
+
+  color: white;
+
+  padding: 15px;
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  letter-spacing: 0.3px;
+
+  box-shadow:
+    0 4px 14px rgba(249, 115, 22, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.1);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  margin-top: 12px;
+}
+
+.add-btn:hover {
+
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 24px rgba(249, 115, 22, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.add-btn:active {
+  transform: translateY(0px);
+  box-shadow:
+    0 2px 8px rgba(249, 115, 22, 0.35);
+}
+
+/*Notes Header*/
+
+.notes-header {
+
+  margin-bottom: 20px;
+}
+
+.notes-header h2 {
+
+  font-size: 1.6rem;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+/*Notes Grid*/
+
+.notes-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(280px, 1fr));
+
+  gap: 20px;
+}
+
+/*Note Card*/
+
+.note-card {
+
+  background: #edecea;
+
+  border: 1px solid #dbd9d6;
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.07),
+    0 8px 24px rgba(0, 0, 0, 0.10);
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 200px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.note-card:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.11),
+    0 20px 40px rgba(0, 0, 0, 0.14);
+}
+
+.note-card h3 {
+
+  font-size: 1.1rem;
+
+  font-weight: 700;
+
+  margin-bottom: 10px;
+
+  word-break: break-word;
+
+  color: var(--text);
+}
+
+.note-card p {
+
+  color: var(--muted);
+
+  flex: 1;
+
+  font-size: 0.9rem;
+
+  word-break: break-word;
+
+  white-space: pre-wrap;
+}
+
+/*Delete Button*/
+
+.delete-btn {
+
+  margin-top: 18px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: var(--red);
+
+  color: white;
+
+  padding: 10px;
+
+  font-size: 0.875rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.delete-btn:hover {
+
+  background: var(--red-hover);
+
+  transform: translateY(-1px);
+}
+
+/*Empty State*/
+
+.empty-state {
+
+  color: var(--muted);
+
+  font-size: 0.95rem;
+
+  text-align: center;
+
+  padding: 50px;
+
+  border: 2px dashed var(--border);
+
+  border-radius: 18px;
+
+  background: white;
+}
+
+/*Mobile*/
+
+@media (max-width: 700px) {
+
+  .container {
+
+    padding: 36px 20px;
+  }
+
+  .hero h1 {
+
+    font-size: 2rem;
+  }
+
+  .note-form {
+
+    padding: 18px;
+  }
+
+  textarea {
+
+    min-height: 130px;
+  }
+}
