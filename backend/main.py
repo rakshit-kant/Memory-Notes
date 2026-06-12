@@ -41,7 +41,7 @@ lib.api_get_all_notes.argtypes = [ctypes.POINTER(CNote), ctypes.c_int]
 lib.api_get_all_notes.restype = ctypes.c_int
 
 
-@app.get("/")
+@app.get("/api/status")
 def home():
     return {"message": "Memory Notes API Running"}
 
