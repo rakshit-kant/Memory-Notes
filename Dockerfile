@@ -9,8 +9,7 @@ WORKDIR /app
 COPY . .
 
 # compile the C shared library
-RUN gcc -shared -fPIC -o libnotes.so src/*.c
-
+RUN gcc -shared -fPIC -I include -o libnotes.so src/*.c
 # install Python deps
 RUN pip install fastapi uvicorn
 
