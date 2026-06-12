@@ -1,5 +1,6 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import ctypes
 
@@ -86,3 +87,6 @@ def delete_note(note_id: int):
         return {"message": "Note Not Found"}
 
     return {"message": "Note Deleted"}
+
+
+app.mount("/", StaticFiles(directory="../frontend", html=True), name="static")
