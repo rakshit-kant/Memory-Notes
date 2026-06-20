@@ -2,87 +2,48 @@
 
 # Memory Notes
 
-A fast, full-stack notes app powered by a **C backend**, wrapped in **FastAPI**, with a clean vanilla **HTML/CSS/JS** frontend.
+A Simple Notes Full-Stack Application which is built with a C Core, FastAPI (Python) Backend and a Traditional HTML/CSS/JS Frontend.
 
-Originally started as a CLI project to learn C fundamentals — now evolved into a complete web app with a REST API and modern UI.
+## Stack
+
+- C
+- FastAPI
+- Python
+- Ctypes
+- HTML/CSS/JS
+
+## Run
+
+```bash
+gcc -shared -fPIC-o libnotes.so src/*.c
+
+cd backend
+uvicorn main:app --reload
+
+cd ../frontend
+python-m http.server 5500
+```
 
 ## Features
 
-- Add, view, and delete notes
-- Notes stored and managed by a custom C library (compiled to `.so`)
-- FastAPI REST API wrapping the C core via `ctypes`
-- Clean, responsive frontend UI
+- Create Notes
+- View Notes
+- Delete Notes
+- C Library Backend
 
-## Tech Stack
+## Learning Goals
 
-| Layer    | Tech                           |
-| -------- | ------------------------------ |
-| Core     | C (compiled to shared library) |
-| Backend  | Python, FastAPI, ctypes        |
-| Frontend | HTML, CSS, JavaScript          |
+- Programming and Handling Extensive Modular Work (Like Handling Many Modular Files and Functions) in C
+- Mimicking OOP in C
+- Memory Management in C
+- File I/O and File Persistence in C
+- Shared Libraries
+- Ctypes usage in FastAPI
+- REST APIs
+- Real World Full-Stack Application
+- Using Hack Club Nest for Deployment
+- Using Docker for Render Deployment
 
-## Project Structure
+## LICENSE
 
-```txt
-memory-notes/
-├── include/          # C header files
-├── src/              # C source files
-├── libnotes.so       # Compiled C shared library
-├── backend/
-│   └── main.py       # FastAPI app
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-└── README.md
-```
-
-## Setup
-
-### 1. Compile the C library
-
-```bash
-gcc -shared -fPIC -o libnotes.so src/*.c
-
-(For Linux Users)
-```
-
-### 2. Run the backend
-
-```bash
-cd backend
-pip install fastapi uvicorn
-uvicorn main:app --reload
-```
-
-The API will be running at `http://127.0.0.1:8000`
-
-### 3. Run the frontend
-
-```bash
-cd frontend
-python -m http.server 5500
-```
-
-Open `http://127.0.0.1:5500` in your browser.
-
-## API Endpoints
-
-| Method | Endpoint      | Description         |
-| ------ | ------------- | ------------------- |
-| GET    | `/notes`      | Get all notes       |
-| POST   | `/notes`      | Add a new note      |
-| DELETE | `/notes/{id}` | Delete a note by ID |
-
-## Purpose
-
-This project was built for learning:
-
-- C fundamentals — structs, pointers, arrays, manual memory management
-- Bridging C and Python with `ctypes`
-- Building and consuming a REST API with FastAPI
-- Frontend development with vanilla JS
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+MIT
